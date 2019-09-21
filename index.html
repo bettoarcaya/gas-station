@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Monitor project</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+    <!-- Entry point -->
+    <div id="app">
+
+      <div class="text-center">
+        <h1>Gas station</h1>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2">
+            <h4 class="text-center">
+              Gas station queue
+            </h4>
+            <div class="text-center">
+              <h5>
+                {{gasStationQueueCount}}
+              </h5>
+            </div>
+            <hr>
+          </div>
+          <div class="col-md-8">
+            <h4 class="text-center">
+              Service station
+            </h4>
+            <div class="border border-primary" style="width: 1000px; height: 300px;">
+              <div class="row text-center">
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-4 border border-dark" style="width: 100px; height: 100px;">
+                      <p>G1</p>
+                      <p>{{g1.gasCount}}</p>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="border border-dark" style="width: 100px; height: 100px;">
+                      <p>G2</p>
+                      <p>{{g2.gasCount}}</p>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="border border-dark" style="width: 100px; height: 100px;">
+                      <p>G3</p>
+                      <p>{{g3.gasCount}}</p>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  
+                </div>
+                <div class="col-md-4">
+                  <div class="border border-dark" style="width: 300px; height: 80px; margin-top: 100px;">
+
+                  </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <h4 class="text-center">
+              Actions
+            </h4>
+            <div class="text-center">
+              <button class="btn btn-primary" type="button" name="button" v-on:click="addCarToQueue">Add car</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>
