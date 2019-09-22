@@ -112,7 +112,7 @@
             <div class="text-center">
               <button class="btn btn-primary" type="button" name="button" v-on:click="addCarToQueue">Add car</button>
               <br>
-              <button class="btn btn-primary" type="button" name="button" v-on:click="addToGasStation" style="margin-top: 20px;">Add to station</button>
+              <button class="btn btn-primary" type="button" name="button" v-on:click="addToGasStation" v-show="gasStationQueueCount > 0" style="margin-top: 20px;">Add to station</button>
             </div>
           </div>
         </div>

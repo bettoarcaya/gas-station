@@ -52,11 +52,13 @@ new Vue({
         freeStation.p1.actualGas = queue[0].actualGas;
         queue.splice(0, 1);
         this.gasStationQueueCount--;
+        this.operate(freeStation, queue[0]);
       }else if(freeStation != null && freeStation.p2.actualGas == 0){
         freeStation.p2.vehicleType = queue[0].vehicleType;
         freeStation.p2.actualGas = queue[0].actualGas;
         queue.splice(0, 1);
         this.gasStationQueueCount--;
+        this.operate(freeStation, queue[0]);
       }else{
         alert("there are not free stations :(");
       }
@@ -69,6 +71,18 @@ new Vue({
         }
       }
       return null;
+    },
+    operate: function(fGasStation, element){
+
+      fGasStation.gasCount -= (element.availableGas - element.actualGas);
+      element.actualGas = element.availableGas;
+      setTimeout(this.clear(fGasStation), 2000);
+
+    },
+    clear: function(gasStation){
+      setTimeout(()=> {
+        alert("cleaning");
+      }, 1000);
     },
   }
 });
