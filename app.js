@@ -99,8 +99,8 @@ new Vue({
     reFillGasStation: function(){
       let stations = [this.g1, this.g2, this.g3];
       for (let i = 0; i < stations.length; i++) {
-        if(stations[i].gasCount == 0){
-          stations[i].gasCount = 300;
+        if(stations[i].gasCount == 0 || stations[i].gasCount < 400){
+          stations[i].gasCount = 400;
         }
       }
     }
