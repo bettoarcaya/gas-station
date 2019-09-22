@@ -14,10 +14,6 @@ new Vue({
   },
   methods: {
     addCarToQueue: function(){
-      //alert("adding car to the gas station queue");
-      /*setTimeout(function () {
-        alert("Hi Bro, SetTimeout is working fine.");
-      }, 1000);*/
 
       let elementType = Math.floor((Math.random() * (3 - 1 + 1)) + 1);
       let newElement = { vehicleType: '', availableGas: 0, actualGas: 0 };
@@ -47,13 +43,13 @@ new Vue({
       let queue = this.gasStationQueue;
       let freeStation = this.lookingForFreeStation(gasStations);
 
-      if(freeStation != null && freeStation.p1.actualGas == 0){
+      if(freeStation != null && freeStation.p1.actualGas == 0 && freeStation.gasCount > 0){
         freeStation.p1.vehicleType = queue[0].vehicleType;
         freeStation.p1.actualGas = queue[0].actualGas;
         queue.splice(0, 1);
         this.gasStationQueueCount--;
         this.operate(freeStation, queue[0]);
-      }else if(freeStation != null && freeStation.p2.actualGas == 0){
+      }else if(freeStation != null && freeStation.p2.actualGas == 0 && freeStation.gasCount > 0){
         freeStation.p2.vehicleType = queue[0].vehicleType;
         freeStation.p2.actualGas = queue[0].actualGas;
         queue.splice(0, 1);
@@ -66,7 +62,7 @@ new Vue({
     },
     lookingForFreeStation: function(stations){
       for (let i = 0; i < stations.length; i++) {
-        if(stations[i].p1.actualGas == 0 || stations[i].p2.actualGas == 0){
+        if(stations[i].gasCount > 0 && (stations[i].p1.actualGas == 0 || stations[i].p2.actualGas == 0)){
           return stations[i];
         }
       }
@@ -74,15 +70,39 @@ new Vue({
     },
     operate: function(fGasStation, element){
 
-      fGasStation.gasCount -= (element.availableGas - element.actualGas);
-      element.actualGas = element.availableGas;
-      setTimeout(this.clear(fGasStation), 2000);
+      let count = ( element.availableGas - element.actualGas);
+
+      if(count < fGasStation.gasCount){
+        fGasStation.gasCount -= count;
+        element.actualGas = element.availableGas;
+      }else{
+        element.actualGas += fGasStation.gasCount;
+        fGasStation.gasCount = 0;
+      }
 
     },
-    clear: function(gasStation){
-      setTimeout(()=> {
-        alert("cleaning");
-      }, 1000);
+    clearGasStation: function(){
+      let stations = [this.g1, this.g2, this.g3];
+      for (let i = 0; i < stations.length; i++) {
+        if(stations[i].p1.actualGas != 0 || stations[i].p2.actualGas != 0){
+          this.clear(stations[i]);
+        }
+      }
     },
+    clear: function(gasStation){
+      gasStation.p1.vehicleType = '';
+      gasStation.p1.actualGas = 0;
+
+      gasStation.p2.vehicleType = '';
+      gasStation.p2.actualGas = 0;
+    },
+    reFillGasStation: function(){
+      let stations = [this.g1, this.g2, this.g3];
+      for (let i = 0; i < stations.length; i++) {
+        if(stations[i].gasCount == 0){
+          stations[i].gasCount = 300;
+        }
+      }
+    }
   }
 });
