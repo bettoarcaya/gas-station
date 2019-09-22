@@ -116,10 +116,10 @@
               <button class="btn btn-primary" type="button" name="button" v-on:click="addToGasStation" v-show="gasStationQueueCount > 0" style="margin-top: 20px;">Add to station</button>
               <button class="btn btn-primary" type="button" name="button" v-show="gasStationQueueCount == 0" style="margin-top: 20px;" disabled>Add to station</button>
               <br>
-              <button class="btn btn-primary" type="button" name="button" v-on:click="clearGasStation" v-show="gasStationQueueCount > 0" style="margin-top: 20px;">Clear</button>
-              <button class="btn btn-primary" type="button" name="button" v-show="gasStationQueueCount == 0" style="margin-top: 20px;" disabled>Clear</button>
+              <button class="btn btn-primary" type="button" name="button" v-on:click="clearGasStation" style="margin-top: 20px;">Clear</button>
               <br>
-              <button class="btn btn-primary" type="button" name="button" v-on:click="reFillGasStation" style="margin-top: 20px;">Refill</button>
+              <button class="btn btn-primary" type="button" name="button" v-on:click="reFillGasStation" v-show="(g1.gasCount < 400 || g2.gasCount < 400 || g3.gasCount < 400)" style="margin-top: 20px;">Refill</button>
+              <button class="btn btn-primary" type="button" name="button" v-show="(g1.gasCount == 400 && g2.gasCount == 400 && g3.gasCount == 400)" style="margin-top: 20px;" disabled>Refill</button>
             </div>
           </div>
         </div>
