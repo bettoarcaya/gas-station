@@ -9,6 +9,15 @@ new Vue({
     gasStationQueueCount: 0,
     gasStationQueue: [],
   },
+  created: function() {
+		var self = this;
+		setInterval(function() {
+         self.addToGasStation();
+    }, 1000);
+    setInterval(function(){
+      self.clearGasStation();
+    },7000)
+	},
   methods: {
     //method to add a element in the gas station queue
     addCarToQueue: function(){
@@ -59,7 +68,7 @@ new Vue({
         this.gasStationQueueCount--;
         this.operate(freeStation, queue[0]);
       }else{
-        alert("there are not free stations yet, you must wait in the queue...");
+        console.log("there are not free stations yet, you must wait in the queue...");
       }
 
     },
@@ -116,7 +125,7 @@ new Vue({
     checkEmptyStations: function(stations){
       for (let i = 0; i < stations.length; i++) {
         if(stations[i].gasCount == 0){
-          alert("filling empty gas station :)" );
+          console.log("filling empty gas station :)" );
           stations[i].gasCount = 400;
         }
       }
